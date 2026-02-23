@@ -1,0 +1,22 @@
+<div class="container py-5">
+  <h1 class="mb-4">Nouveau Jeu</h1>
+
+  <div class="d-flex mb-4">
+    <% @letters.each do |letter| %>
+      <div class="bg-primary text-white shadow-sm d-flex align-items-center justify-content-center m-1"
+           style="width: 45px; height: 45px; font-size: 24px; font-weight: bold; border-radius: 4px;">
+        <%= letter %>
+      </div>
+    <% end %>
+  </div>
+
+  <p class="text-muted">Quel est le mot le plus long que vous puissiez trouver ?</p>
+
+  <form action="/score" method="POST" data-turbo="false" class="input-group mb-3" style="max-width: 400px;">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @letters %>
+
+    <input type="text" name="word" class="form-control" placeholder="Tapez votre mot ici...">
+    <button type="submit" class="btn btn-outline-primary">Jouer !</button>
+  </form>
+</div>
